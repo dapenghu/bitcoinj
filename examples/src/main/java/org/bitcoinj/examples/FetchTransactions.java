@@ -33,6 +33,7 @@ import java.util.List;
 public class FetchTransactions {
     public static void main(String[] args) throws Exception {
         BriefLogFormatter.init();
+
         System.out.println("Connecting to node");
         final NetworkParameters params = TestNet3Params.get();
 
@@ -46,6 +47,7 @@ public class FetchTransactions {
 
         Sha256Hash txHash = Sha256Hash.wrap(args[0]);
         ListenableFuture<Transaction> future = peer.getPeerMempoolTransaction(txHash);
+
         System.out.println("Waiting for node to send us the requested transaction: " + txHash);
         Transaction tx = future.get();
         System.out.println(tx);

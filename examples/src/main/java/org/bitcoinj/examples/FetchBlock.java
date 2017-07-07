@@ -32,6 +32,7 @@ import java.util.concurrent.Future;
 public class FetchBlock {
     public static void main(String[] args) throws Exception {
         BriefLogFormatter.init();
+
         System.out.println("Connecting to node");
         final NetworkParameters params = TestNet3Params.get();
 
@@ -39,6 +40,7 @@ public class FetchBlock {
         BlockChain chain = new BlockChain(params, blockStore);
         PeerGroup peerGroup = new PeerGroup(params, chain);
         peerGroup.start();
+
         PeerAddress addr = new PeerAddress(params, InetAddress.getLocalHost());
         peerGroup.addAddress(addr);
         peerGroup.waitForPeers(1).get();
@@ -46,6 +48,7 @@ public class FetchBlock {
 
         Sha256Hash blockHash = Sha256Hash.wrap(args[0]);
         Future<Block> future = peer.getBlock(blockHash);
+
         System.out.println("Waiting for node to send us the requested block: " + blockHash);
         Block block = future.get();
         System.out.println(block);

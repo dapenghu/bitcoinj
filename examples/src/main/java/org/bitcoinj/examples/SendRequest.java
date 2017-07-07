@@ -60,7 +60,8 @@ public class SendRequest {
         try {
             Wallet.SendResult result = kit.wallet().sendCoins(kit.peerGroup(), to, value);
             System.out.println("coins sent. transaction hash: " + result.tx.getHashAsString());
-            // you can use a block explorer like https://www.biteasy.com/ to inspect the transaction with the printed transaction hash. 
+            // you can use a block explorer like https://www.biteasy.com/ to inspect the transaction with the printed transaction hash.
+
         } catch (InsufficientMoneyException e) {
             System.out.println("Not enough coins in your wallet. Missing " + e.missing.getValue() + " satoshis are missing (including fees)");
             System.out.println("Send money to: " + kit.wallet().currentReceiveAddress().toString());

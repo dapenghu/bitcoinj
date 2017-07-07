@@ -46,6 +46,7 @@ public class ForwardingService {
     public static void main(String[] args) throws Exception {
         // This line makes the log output more compact and easily read, especially when using the JDK log adapter.
         BriefLogFormatter.init();
+
         if (args.length < 1) {
             System.err.println("Usage: address-to-send-back-to [regtest|testnet]");
             return;
@@ -64,6 +65,7 @@ public class ForwardingService {
             params = MainNetParams.get();
             filePrefix = "forwarding-service";
         }
+
         // Parse the address given as the first parameter.
         forwardingAddress = Address.fromBase58(params, args[0]);
 
@@ -90,6 +92,7 @@ public class ForwardingService {
                 Coin value = tx.getValueSentToMe(w);
                 System.out.println("Received tx for " + value.toFriendlyString() + ": " + tx);
                 System.out.println("Transaction will be forwarded after it confirms.");
+
                 // Wait until it's made it into the block chain (may run immediately if it's already there).
                 //
                 // For this dummy app of course, we could just forward the unconfirmed transaction. If it were

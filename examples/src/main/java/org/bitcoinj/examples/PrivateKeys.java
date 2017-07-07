@@ -38,6 +38,7 @@ public class PrivateKeys {
     public static void main(String[] args) throws Exception {
         // TODO: Assumes main network not testnet. Make it selectable.
         NetworkParameters params = MainNetParams.get();
+
         try {
             // Decode the private key from Satoshis Base58 variant. If 51 characters long then it's from Bitcoins
             // dumpprivkey command and includes a version byte and checksum, or if 52 characters long then it has 

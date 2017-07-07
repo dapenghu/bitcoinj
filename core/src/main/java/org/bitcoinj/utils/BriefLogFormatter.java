@@ -57,10 +57,13 @@ public class BriefLogFormatter extends Formatter {
     @Override
     public String format(LogRecord logRecord) {
         Object[] arguments = new Object[6];
+
         arguments[0] = logRecord.getThreadID();
+
         String fullClassName = logRecord.getSourceClassName();
         int lastDot = fullClassName.lastIndexOf('.');
         String className = fullClassName.substring(lastDot + 1);
+
         arguments[1] = className;
         arguments[2] = logRecord.getSourceMethodName();
         arguments[3] = new Date(logRecord.getMillis());
